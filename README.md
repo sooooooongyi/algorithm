@@ -1,2 +1,2 @@
 # codingtest
-✏ for codingtest
+✏ 코딩테스트 문제 풀이를 위한 리포지토리입니다.
