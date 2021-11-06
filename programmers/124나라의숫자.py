@@ -3,7 +3,7 @@ def solution(n):
     dataSet = [4, 1, 2]
 
     while(n):
-        answer = dataSet[n%3] + answer
+        answer = str(dataSet[n%3]) + answer
         if n%3 == 0:
             n = n//3 - 1
         else:
