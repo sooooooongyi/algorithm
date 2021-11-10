@@ -1,0 +1,12 @@
+# 행 별로 작은 수들 중에
+
+n, m = map(int, input().split())
+result = 0
+
+for i in range(n):
+    data = list(map(int, input().split()))
+    min_value = min(data)
+
+    result = max(result, min_value)
+
+print(result)
