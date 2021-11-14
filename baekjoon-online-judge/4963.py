@@ -7,7 +7,7 @@ dx = [1, 1, 0, -1, -1, -1, 0, 1]
 dy = [0, 1, 1, 1, 0, -1, -1, -1]
 
 while True:
-    w, h = map(int, input().split)
+    w, h = map(int, input().split())
     if w == 0 and h == 0:
         break
     graph = []
@@ -21,7 +21,6 @@ while True:
 
     for i in range(h):
         for j in range(w):
-            # 방문하지 않은 땅이라면?
             if visited[i][j] == False and graph[i][j] == 1:
                 queue.append([j, i])
                 visited[i][j] = True
@@ -32,7 +31,7 @@ while True:
                         nx = x + dx[k]
                         ny = y + dy[k]
 
-                        if 0 <= nx <= w and 0 <= ny < h:
+                        if 0 <= nx < w and 0 <= ny < h:
                             if visited[ny][nx] == False and graph[ny][nx] == 1:
                                 visited[ny][nx] = True
                                 queue.append([nx, ny])
