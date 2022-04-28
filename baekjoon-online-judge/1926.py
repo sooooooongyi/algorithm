@@ -10,13 +10,16 @@ for i in range(n):
 
 dx = [1, -1, 0, 0]
 dy = [0, 0, 1, -1]
-answer = []
 
-def bfs():
+visited = [[0] * m for _ in range(n)]
+result = 0
+max_count = 0
+
+def bfs(x, y):
   q = deque()
-  q.append([0, 0])
-  visited[0][0] = 1
-  cnt = 0
+  q.append([x, y])
+  visited[x][y] = 1
+  cnt = 1
 
   while q:
     x, y = q.popleft()
@@ -24,24 +27,20 @@ def bfs():
       nx = x + dx[i]
       ny = y + dy[i]
 
-      if 0 <= nx < n  and 0 <= ny < m and visited[nx][ny] == 0:
+      if 0 <= nx < n and 0 <= ny < m and visited[nx][ny] == 0:
         if graph[nx][ny] == 0:
-          visited[nx][ny] = 1
+          continue
+        else:
           q.append([nx, ny])
-        elif graph[nx][ny] == 1:
-          graph[nx][ny] = 0
           visited[nx][ny] = 1
           cnt += 1
-    answer.append(cnt)
-    return cnt
+  return cnt
 
-timer = 0
-while 1:
-  timer += 1
-  visited = [[0] * m for _ in range(n)]
-  cnt = bfs()
-  if cnt == 0:
-    break
+for i in range(n):
+  for j in range(m):
+    if graph[i][j] == 1 and not visited[i][j]:
+      result += 1
+      max_count = max(max_count, bfs(i, j))
 
-print(timer -1)
-print(answer[-2])
+print(result)
+print(max_count)
