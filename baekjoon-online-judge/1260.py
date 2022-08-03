@@ -1,7 +1,9 @@
-# DFS & BFS
+import sys
+input = sys.stdin.readline
+
 N, M, V = map(int, input().split())
 graph = [[0]*(N+1) for _ in range(N+1)]
-visited = [False]*(N+1)
+visited = [False] * (N+1)
 
 for _ in range(M):
     start, end = map(int, input().split())
@@ -13,7 +15,6 @@ def dfs(v):
     print(v, end = ' ')
     for i in range(1, N+1):
         if not visited[i] and graph[v][i] == 1:
-            # 방문하지 않았고, 연결되어있으면
             dfs(i)
 
 def bfs(v):
