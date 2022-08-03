@@ -1,33 +1,33 @@
-# DFS - 바이러스
-# Solution
-# (1) 양방향 그래프! -> o
+import sys
+from collections import deque
+input = sys.stdin.readline
 
 N = int(input())
-K = int(input())
-graph = []
-visited = [False]*N
+V = int(input())
 
-for i in range(K):
-    nodeFrom, nodeTo = map(int, input().split())
-    graph.append([nodeTo, nodeFrom])
-    graph.append([nodeFrom, nodeTo])
+graph = [[0] * (N+1) for _ in range(N+1)]
+visited = [False] * (N+1)
 
-def dfs_virus(graph, nodeFrom, visited):
-    if visited[nodeFrom-1]:
-        return
-    else:
-        visited[nodeFrom-1] = True
-    for i in range(len(graph)):
-        if graph[i][0] == nodeFrom:
-            if not visited[graph[i][1]-1]:
-                dfs_virus(graph, graph[i][1], visited)
+for _ in range(V):
+    start, end = map(int, input().split())
+    graph[start][end] = 1
+    graph[end][start] = 1
 
+def bfs(v):
+    q = deque([v])
+    visited[v] = True
+    while q:
+        v = q.popleft()
+        for i in range(1, N+1):
+            if not visited[i] and graph[v][i]:
+                q.append(i)
+                visited[i] = True
 
-dfs_virus(graph, 1, visited)
+bfs(1)
 
-count = 0
-for i in range(N):
-    if visited[i]:
-        count +=1
+cnt = 0
+for i in range(1, N+1):
+    if visited[i] == True:
+        cnt += 1
 
-print(count-1)
+print(cnt-1)
