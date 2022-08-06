@@ -7,15 +7,15 @@ N = int(input())
 graph = []
 
 for _ in range(N):
-    x, y = input().split()
+    x, y = map(int, input().split())
     graph.append([int(x), int(y)])
 
 for i in range(N):
-    count = 0
+    cnt = 0
     x = graph[i][0]
     y = graph[i][1]
 
     for j in range(N):
-        if graph[j][0]>x and graph[j][1]>y:
-            count +=1
-    print(count+1, end=' ')
+        if x < graph[j][0] and y < graph[j][1]:
+            cnt += 1
+    print(cnt+1, end = ' ')
