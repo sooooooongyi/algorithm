@@ -8,22 +8,23 @@ T = int(input())
 
 for _ in range(T):
     N, M = map(int, input().split())
-    i_list = [0 for _ in range(N)]
+    i_list = [0] * N
     i_list[M] = 1
-    count = 0
-    p_list = list(map(int, input().split()))
 
-    while True: 
-        if p_list[0] == max(p_list):
-            count += 1
+    n_list = list(map(int, input().split()))
+    cnt = 0
+
+    while True:
+        if n_list[0] == max(n_list):
+            cnt += 1
             if i_list[0] == 1:
-                print(count)
+                print(cnt)
                 break
             else:
-                del p_list[0]
+                del n_list[0]
                 del i_list[0]
         else:
-            p_list.append(p_list[0])
-            del p_list[0]
-            i_list.append(i_list[0])
+            n_list.append(n_list[0])
+            del n_list[0]
+            i_list.append(n_list[0])
             del i_list[0]
