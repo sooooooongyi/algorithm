@@ -16,4 +16,3 @@ while True:
 
 answer += N - 1
 print(answer)
-  
